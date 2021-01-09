@@ -1,8 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+
+const User = require("./models/user");
 
 dotenv.config();
 
@@ -24,17 +27,20 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.json("Hello from my app");
-});
+// Require apis
+const productRoutes = require("./routes/product");
+const categoryRoutes = require("./routes/category");
+const ownerRoutes = require("./routes/owner");
 
-app.post("/", (req, res) => {
-  console.log(req.body.name)
-})
-app.listen(3000, err => {
+app.use('/api', productRoutes);
+app.use("/api", categoryRoutes);
+app.use("/api", ownerRoutes);
+
+
+app.listen(3000, (err) => {
   if (err) {
     console.log(err);
   } else {
     console.log("Listening on PORT", 3000);
   }
-})
+});
