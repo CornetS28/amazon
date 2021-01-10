@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Product = require("../models/product");
-const upload = require("../middlewares/upload-photo")
+const upload = require("../middlewares/upload-photo");
 
 router.post("/products", upload.single("photo"), async (req, res) => {
   try {
@@ -70,7 +70,7 @@ router.put("/products/:id", async (req, res) => {
           title: req.body.title,
           price: req.body.price,
           category: req.body.categoryID,
-          photo: req.body.photo,
+          photo: req.file.location,
           description: req.body.description,
           stockQuantity: req.body.stockQuantity,
           owner: req.body.ownerID,
@@ -94,14 +94,15 @@ router.put("/products/:id", async (req, res) => {
 // DELETE a single product
 router.delete("/products/:id", async (req, res) => {
   try {
-    const deleteProduct = await Product.findOneAndDelete({ _id: req.params.id });
+    const deleteProduct = await Product.findOneAndDelete({
+      _id: req.params.id,
+    });
     if (deleteProduct) {
-  res.json({
-    status: true,
-    message: "Successfully deleted",
-  });
+      res.json({
+        status: true,
+        message: "Successfully deleted",
+      });
     }
-  
   } catch (error) {
     res.status(500).json({
       success: false,
