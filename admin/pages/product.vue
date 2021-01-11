@@ -66,7 +66,7 @@
               <div class="a-spacing-top-large">
                 <span class="a-button-register">
                   <span class="span a-button-inner">
-                    <span class="a-button-text" @click="onAddProduct">App product</span>
+                    <span class="a-button-text" @click="onAddProduct">Add product</span>
                   </span>
                 </span>
               </div>
