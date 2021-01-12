@@ -8,9 +8,10 @@
           All products
         </h1>
          <div class="a-spacing-large"></div>
-        <a href="#" class="a-button-buy-again">Add anew product</a>
-         <a href="#" class="a-button-history margin-right-10">Add anew category</a>
-          <a href="#" class="a-button-history margin-right-10">Add anew owner</a>
+        <nuxt-link to="/products" class="a-button-buy-again">
+        Add a new product</nuxt-link>
+         <nuxt-link to="/category" class="a-button-history margin-right-10">Add a new category</nuxt-link>
+          <nuxt-link to="/owner" class="a-button-history margin-right-10">Add a new owner</nuxt-link>
       </div>
     </div>
   </div>
@@ -25,9 +26,9 @@
           <div class="history-box">
             <div class="text-center">
                 <!--  Product image -->
-              <a href="#" class="a-link-normal">
+              <nuxt-link to="#" class="a-link-normal">
                 <img :src="product.photo" alt class="img-fluid" />
-              </a>
+              </nuxt-link>
                 <!--  Product title  -->
               <div class="a-spacing-top-base asin-title">
                 <span class="a-text-normal">
@@ -37,13 +38,13 @@
               </div>
               <!-- Product Rating -->
               <div class="a-row">
-                <a href="#">
+                <nuxt-link to="#">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                </a>
+                </nuxt-link>
                 <span class="a-letter-space"></span>
                 <span class="a-color-tertiary a-size-small asin-reviews">(1234)</span>
               </div>
@@ -54,16 +55,12 @@
                 </span>
               </div>
               <div class="a-row">
-                  <a
-                  href="#"
-                  class="a-button-history margin-right-10"
-                 
-                >Update</a>
-                <a
-                  href="#"
-                  class="a-button-history margin-right-10"
-                 
-                >Delete</a>
+                <nuxt-link :to="`/products/${product._id}`" class="a-button-history margin-right-10">
+                  Update
+                </nuxt-link>
+                <nuxt-link to="#" class="a-button-history margin-right-10">
+                  Delete
+                </nuxt-link>
               </div>
             </div>
           </div>
