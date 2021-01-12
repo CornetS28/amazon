@@ -58,9 +58,11 @@
                 <nuxt-link :to="`/products/${product._id}`" class="a-button-history margin-right-10">
                   Update
                 </nuxt-link>
-                <nuxt-link to="#" class="a-button-history margin-right-10">
+                <a
+                  href="#" class="a-button-history margin-right-10" @click="onDeleteProduct(product._id, index)">
                   Delete
-                </nuxt-link>
+                </a>
+                 
               </div>
             </div>
           </div>
@@ -81,7 +83,21 @@ export default {
         products: response.products
       }
     } catch (error) {
-      
+      console.log(error)
+    }
+  },
+  methods: {
+    async onDeleteProduct(id, index) {
+      try {
+        let response = await this.$axios.$delete(
+          `http://localhost:3000/api/products/${id}`
+        );
+        if (response.status) {
+          this.products.splice(index, 1);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }
